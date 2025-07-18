@@ -25,12 +25,10 @@ import UserSettings from "./pages/user/Settings";
 // Admin pages
 import AdminDashboard from "./pages/admin/Dashboard";
 import Crowd from "./pages/admin/crowd";
-import Responders from "./pages/admin/responders";
-import Incidents from "./pages/admin/incidents";
 import LostFoundAdmin from "./pages/admin/lostfound";
 import AdminSettings from "./pages/admin/Settings";
 import AdminAISummary from "./pages/admin/ai-summary";
-import Alerts from "./pages/admin/alerts";
+import IncidentDashboard from "./pages/admin/IncidentDashboard";
 
 const queryClient = new QueryClient();
 
@@ -63,11 +61,9 @@ const App = () => (
           <Route path="/admin" element={<Layout />}>
             <Route path="dashboard" element={<AdminDashboard />} />
             <Route path="crowd" element={<Crowd />} />
-            <Route path="responders" element={<Responders />} />
-            <Route path="incidents" element={<Incidents />} />
             <Route path="lostfound" element={<LostFoundAdmin />} />
             <Route path="ai-summary" element={<AdminAISummary />} />
-            <Route path="alerts" element={<Alerts />} />
+            <Route path="incident-dashboard" element={<IncidentDashboard />} />
             <Route path="settings" element={<AdminSettings />} />
           </Route>
           
