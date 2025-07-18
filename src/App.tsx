@@ -24,13 +24,13 @@ import UserSettings from "./pages/user/Settings";
 
 // Admin pages
 import AdminDashboard from "./pages/admin/Dashboard";
-import CrowdMonitoring from "./pages/admin/CrowdMonitoring";
-import AdminAISummary from "./pages/admin/AISummary";
-import Alerts from "./pages/admin/Alerts";
-import ResponderDispatch from "./pages/admin/ResponderDispatch";
-import IncidentManagement from "./pages/admin/IncidentManagement";
-import LostFoundAI from "./pages/admin/LostFoundAI";
+import Crowd from "./pages/admin/crowd";
+import Responders from "./pages/admin/responders";
+import Incidents from "./pages/admin/incidents";
+import LostFoundAdmin from "./pages/admin/lostfound";
 import AdminSettings from "./pages/admin/Settings";
+import AdminAISummary from "./pages/admin/ai-summary";
+import Alerts from "./pages/admin/alerts";
 
 const queryClient = new QueryClient();
 
@@ -62,12 +62,12 @@ const App = () => (
           {/* Admin Panel */}
           <Route path="/admin" element={<Layout />}>
             <Route path="dashboard" element={<AdminDashboard />} />
-            <Route path="crowd-monitoring" element={<CrowdMonitoring />} />
+            <Route path="crowd" element={<Crowd />} />
+            <Route path="responders" element={<Responders />} />
+            <Route path="incidents" element={<Incidents />} />
+            <Route path="lostfound" element={<LostFoundAdmin />} />
             <Route path="ai-summary" element={<AdminAISummary />} />
             <Route path="alerts" element={<Alerts />} />
-            <Route path="responder-dispatch" element={<ResponderDispatch />} />
-            <Route path="incident-management" element={<IncidentManagement />} />
-            <Route path="lost-found-ai" element={<LostFoundAI />} />
             <Route path="settings" element={<AdminSettings />} />
           </Route>
           

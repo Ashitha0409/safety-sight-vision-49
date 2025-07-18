@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Search, Eye, Brain, Users, Camera, Clock, CheckCircle, AlertTriangle, Upload } from "lucide-react";
 import { Input } from "@/components/ui/input";
 
-export default function LostFoundAI() {
+export default function LostFoundAdmin() {
   const aiMatches = [
     {
       id: "MATCH-034",

@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Users, TrendingUp, MapPin, Clock, AlertTriangle, BarChart3 } from "lucide-react";
 
-export default function CrowdMonitoring() {
+export default function Crowd() {
   const predictions = [
     { time: "Now", density: 74, prediction: 82, trend: "increasing" },
     { time: "15 min", density: 82, prediction: 89, trend: "increasing" },

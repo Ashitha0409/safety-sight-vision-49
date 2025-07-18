@@ -28,12 +28,12 @@ export default function Layout() {
 
   const adminNavItems = [
     { to: "/admin/dashboard", icon: Eye, label: "Dashboard" },
-    { to: "/admin/crowd-monitoring", icon: MapPin, label: "Crowd Monitoring" },
+    { to: "/admin/crowd", icon: MapPin, label: "Crowd Monitoring" },
     { to: "/admin/ai-summary", icon: Eye, label: "AI Summary" },
     { to: "/admin/alerts", icon: Shield, label: "Alerts & Anomalies" },
     { to: "/admin/responders", icon: UserCheck, label: "Responder Dispatch" },
     { to: "/admin/incidents", icon: Shield, label: "Incident Management" },
-    { to: "/admin/lost-found", icon: UserCheck, label: "Lost & Found AI" },
+    { to: "/admin/lostfound", icon: UserCheck, label: "Lost & Found AI" },
     { to: "/admin/settings", icon: Settings, label: "Settings" },
   ];
 
