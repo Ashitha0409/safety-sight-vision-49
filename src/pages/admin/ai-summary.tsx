@@ -1,7 +1,10 @@
+// src/pages/user/AISummary.tsx
+import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Brain, Eye, AlertTriangle, Users, MapPin, Clock, Zap, Camera } from "lucide-react";
+import { Brain, Eye, AlertTriangle, MapPin, Clock, Zap, Camera } from "lucide-react";
+import LiveCameraStatus from "@/components/ui/LiveCameraStatus";
 
 export default function AISummary() {
   const aiInsights = [
@@ -11,42 +14,36 @@ export default function AISummary() {
       severity: "high",
       type: "Crowd Behavior",
       location: "Downtown Plaza",
-      summary: "AI detected unusual crowd movement patterns suggesting potential stampede risk. Crowd density increasing rapidly in central area.",
+      summary:
+        "AI detected unusual crowd movement patterns suggesting potential stampede risk. Crowd density increasing rapidly in central area.",
       confidence: 92,
       cameras: ["CAM-12", "CAM-15", "CAM-18"],
-      action: "Deploy crowd control immediately"
+      action: "Deploy crowd control immediately",
     },
     {
-      id: "AI-002", 
+      id: "AI-002",
       timestamp: "8 minutes ago",
       severity: "medium",
       type: "Suspicious Activity",
       location: "Train Station",
-      summary: "Individual loitering near restricted area for 15+ minutes. Behavior pattern matches security concerns database.",
+      summary:
+        "Individual loitering near restricted area for 15+ minutes. Behavior pattern matches security concerns database.",
       confidence: 78,
       cameras: ["CAM-23", "CAM-24"],
-      action: "Send security personnel for investigation"
+      action: "Send security personnel for investigation",
     },
     {
       id: "AI-003",
-      timestamp: "12 minutes ago", 
+      timestamp: "12 minutes ago",
       severity: "low",
       type: "Infrastructure",
       location: "Main Street Bridge",
-      summary: "Automated detection of minor structural vibration anomaly. May indicate maintenance requirement.",
+      summary:
+        "Automated detection of minor structural vibration anomaly. May indicate maintenance requirement.",
       confidence: 65,
       cameras: ["CAM-31"],
-      action: "Schedule routine inspection"
-    }
-  ];
-
-  const liveFeeds = [
-    { id: "CAM-12", location: "Downtown Plaza", status: "active", alerts: 2 },
-    { id: "CAM-15", location: "Downtown Plaza", status: "active", alerts: 1 },
-    { id: "CAM-23", location: "Train Station", status: "active", alerts: 1 },
-    { id: "CAM-31", location: "Main Street Bridge", status: "active", alerts: 0 },
-    { id: "CAM-05", location: "City Park", status: "active", alerts: 0 },
-    { id: "CAM-18", location: "Central Mall", status: "maintenance", alerts: 0 }
+      action: "Schedule routine inspection",
+    },
   ];
 
   return (
@@ -74,18 +71,26 @@ export default function AISummary() {
             <CardContent>
               <div className="space-y-4">
                 {aiInsights.map((insight) => (
-                  <div key={insight.id} className={`p-4 rounded-lg border-l-4 ${
-                    insight.severity === 'high' ? 'border-l-alert bg-alert/5' :
-                    insight.severity === 'medium' ? 'border-l-warning bg-warning/5' :
-                    'border-l-secondary bg-secondary/5'
-                  }`}>
+                  <div
+                    key={insight.id}
+                    className={`p-4 rounded-lg border-l-4 ${
+                      insight.severity === "high"
+                        ? "border-l-alert bg-alert/5"
+                        : insight.severity === "medium"
+                        ? "border-l-warning bg-warning/5"
+                        : "border-l-secondary bg-secondary/5"
+                    }`}
+                  >
                     <div className="flex items-start justify-between mb-3">
                       <div>
                         <div className="flex items-center gap-2 mb-1">
-                          <Badge 
+                          <Badge
                             variant={
-                              insight.severity === 'high' ? 'destructive' :
-                              insight.severity === 'medium' ? 'default' : 'secondary'
+                              insight.severity === "high"
+                                ? "destructive"
+                                : insight.severity === "medium"
+                                ? "default"
+                                : "secondary"
                             }
                             className="text-xs"
                           >
@@ -104,9 +109,9 @@ export default function AISummary() {
                         <div className="text-sm font-medium">{insight.confidence}%</div>
                       </div>
                     </div>
-                    
+
                     <p className="text-sm text-foreground mb-3">{insight.summary}</p>
-                    
+
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <Camera className="h-4 w-4 text-muted-foreground" />
@@ -114,10 +119,7 @@ export default function AISummary() {
                           Cameras: {insight.cameras.join(", ")}
                         </span>
                       </div>
-                      <Button 
-                        size="sm" 
-                        variant={insight.severity === 'high' ? 'alert' : 'default'}
-                      >
+                      <Button size="sm" variant={insight.severity === "high" ? "alert" : "default"}>
                         {insight.action}
                       </Button>
                     </div>
@@ -157,7 +159,7 @@ export default function AISummary() {
 
         {/* Sidebar */}
         <div className="space-y-6">
-          {/* Live Camera Feeds */}
+          {/* Live Camera Status */}
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -166,29 +168,7 @@ export default function AISummary() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="space-y-3">
-                {liveFeeds.map((feed) => (
-                  <div key={feed.id} className="flex items-center justify-between p-3 bg-muted/30 rounded-lg">
-                    <div>
-                      <div className="font-medium text-sm">{feed.id}</div>
-                      <div className="text-xs text-muted-foreground">{feed.location}</div>
-                    </div>
-                    <div className="text-right">
-                      <Badge 
-                        variant={feed.status === 'active' ? 'default' : 'secondary'}
-                        className="text-xs mb-1"
-                      >
-                        {feed.status}
-                      </Badge>
-                      {feed.alerts > 0 && (
-                        <div className="text-xs text-alert">
-                          {feed.alerts} alert{feed.alerts !== 1 ? 's' : ''}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <LiveCameraStatus />
             </CardContent>
           </Card>
 
@@ -201,19 +181,27 @@ export default function AISummary() {
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
                   <span className="text-sm">Crowd Detection</span>
-                  <Badge variant="default" className="text-xs">Active</Badge>
+                  <Badge variant="default" className="text-xs">
+                    Active
+                  </Badge>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm">Behavior Analysis</span>
-                  <Badge variant="default" className="text-xs">Active</Badge>
+                  <Badge variant="default" className="text-xs">
+                    Active
+                  </Badge>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm">Object Recognition</span>
-                  <Badge variant="default" className="text-xs">Active</Badge>
+                  <Badge variant="default" className="text-xs">
+                    Active
+                  </Badge>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm">Anomaly Detection</span>
-                  <Badge variant="secondary" className="text-xs">Training</Badge>
+                  <Badge variant="secondary" className="text-xs">
+                    Training
+                  </Badge>
                 </div>
               </div>
             </CardContent>
